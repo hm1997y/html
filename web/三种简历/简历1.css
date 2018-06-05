@@ -1,0 +1,25 @@
+body{
+    width:1000px;
+    margin:auto;
+    border:1px solid black;
+    box-shadow:0 0 20px 0 black inset;
+}
+.box{
+    width:700px;
+    margin:50px auto;
+}
+.box p{
+    display:inline;
+    font-weight:bolder;/
+    /*margin:30px;*/
+}
+.box .text{
+    margin:0;
+}
+.box .text1{
+    margin:30px;
+}
+.box p .title{
+    display:block;
+    line-height: 30px;
+}
