@@ -1,0 +1,33 @@
+.box {
+    display:flex; 
+    width:1000px;
+    margin:auto;   
+}
+.box1{
+    width:200px;
+    background-color:rgb(101 165 250);
+    border:1px solid white;
+    font-size:35px;
+    color:white;
+    text-align:center;
+    line-height:150px;
+}
+.box2{
+    width:700px;
+    margin:0 30px;
+}
+.box2 p{
+    display:inline;
+    font-weight:bolder;/
+    /*margin:30px;*/
+}
+.box2 .text{
+    margin:0;
+}
+.box2 .text1{
+    margin:30px;
+}
+.box2 p .title{
+    display:block;
+    line-height: 30px;
+}

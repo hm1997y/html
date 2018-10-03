@@ -1,0 +1,48 @@
+*{
+    margin:0;padding:0;
+}
+.box{
+    width:1000px;
+    margin:auto;
+}
+header{
+    padding:20px;
+    height:45px;
+    width:960px;
+    background-color:rgb(133 133 133);
+    color:white;
+    line-height:45px;
+}
+.box .list{
+    display:flex;
+}
+.box .head li{
+    margin:2px 0;
+    width:100px;
+    height:100px;
+    background-color:rgb(214 214 214);
+    list-style:none;
+    text-align:center;
+    line-height:100px;
+}
+
+.box .content li{
+    margin:2px 0;
+    height:100px;
+    width:900px;
+    list-style:none;
+    border-right:.5px solid gainsboro;
+    border-bottom:.5px solid gainsboro;
+    text-indent:20px;
+    line-height:50px;
+
+}
+.box .content .news span{
+    padding:20px;
+}
+.box .list .head li:nth-child(1){
+    margin:0;
+}
+.box .list .content li:nth-child(1){
+    margin:0;
+}
