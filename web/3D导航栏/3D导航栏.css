@@ -1,0 +1,54 @@
+*{
+    margin:0;padding:0;
+}
+body{
+    background-color:black;
+    perspective:800px;
+}
+.nav{
+    width:400px;
+    height:50px;
+    background-color:red;
+    margin:100px auto;
+    animation:go 3s infinite linear;
+}
+.nav .box{
+    width:410px;
+    height:50px;
+    background-color:yellow;
+}
+.nav .box li{
+    float:left;
+    width:80px;
+    height:50px;
+    background-color:blue;
+    list-style:none;
+    border:1px solid white;
+}
+.nav .box li h3{
+    width:80px;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+}
+.nav ul.box li ul.list li{
+    width:80px;
+    height:50px;
+    background-color:green;
+}
+.nav ul.box li ul.list{
+    overflow:hidden;
+    height:0;
+    transition:.5s;
+}
+.nav ul.box li:hover ul.list{
+    height:200px;
+}
+@keyframes go{
+    0%{transform:rotateY(45deg)}
+    50%{tranSform:rotateY(-45deg)}
+    100%{tranSform:rotateY(45deg)}
+}
+.nav:hover{
+    animation-play-state:paused;
+}
