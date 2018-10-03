@@ -1,0 +1,936 @@
+选择器
+1.通配符选择器 匹配页面中所有的元素
+2.元素选择器div｛｝
+3.class选择器 类选择器 用class属性给元素命名
+命名规范
+1.不能以数字开头
+2.以小写字母开头
+3.不能使用中文 尽量不要使用拼音
+4.见名知意
+5.可以加-或_
+6.驼峰命名
+所有书写均在英文半角状态下的小写
+id，class必须以字母开头
+所有标签必须闭合
+html标签用tab键缩进
+属性值必须带引号
+<!--html注释-->
+/*class注释*/
+ul,li/ol,li/dl,dt,dd拥有父子级关系的标签
+p,dt,h标签，里面不能嵌套块属性标签；
+a标签不能嵌套a
+内联元素不能嵌套块（a除外）
+id选择器 以id属性来命名 在页面中只能出现一次 具有唯一性 并且权重值最高
+后代选择器 从第一个元素依次往下选 空格隔开
+背景样式
+背景颜色：background-color：十六进制值：#fff 英文单词：red blue	rgb/rgba(css3)
+rgb	一种表示颜色的方式 通过对红绿蓝三种的颜色通道的变化相互叠加
+R red 红色 g green 绿色 b blue 蓝色 a 透明度 取值0-1 不能取负值
+background-image:url（“images/1.jpg”）;不是内容
+background-repeat:no-repeat;规定背景图片不重复
+background-repeat:repeat-X;水平平铺
+background-repeat:repeat-y;竖直平铺
+背景图片的位置
+top left right center bottom
+background-position:center;
+background-position:top right;当只写一个值的时候 第二个值默认是center
+background-position:20px 30px;第一个x轴 第二个是Y轴
+background-position:-50% 50%;百分比 根据元素框决定 支持负值
+背景关联
+background-attachment：fixed;scroll默认 fixed 当页面滚动条的时候 背景图不移动
+背景：背景图片 背景重复 背景位置 背景颜色 背景关联
+浮动：让块级元素横排显示
+定义：使元素脱离文档流，按照指定方向（左右）移动，遇到父级边界或者相邻的浮动元素停了下来
+文档流：普通元素在文档中默认的排列方式 不给加任何样式的时候 遵守最基本的元素排列规则
+脱离文档流：在页面中不占位置
+给了浮动的元素，只会影响后面的元素（任何元素都可以浮动）
+如果父级宽度太窄，无法容纳所有的浮动元素，无法容纳的浮动元素会往下掉
+如果浮动元素的高度不同，那么当它们向下移动时可能被其它浮动元素“卡住”
+浮动对文字的影响
+浮动框旁边的行框被缩短，从而给浮动框留出空间，行框围绕浮动框，因此，创建浮动框可以使文本绕图像
+清除浮动（造成父级塌陷）
+1.浮动元素本身不能清除 clear：left/right/both;
+2.加高 给父级元素加高 扩展性不好
+3.给父级加display：inline-block；中间会解析空格
+4.加overflow:hidden;刚好需要就用
+5.加after伪元素 行业主流做法
+ul:after{
+	content:'';
+	display:block;
+	clear:both;	
+}
+6.哪里浮动哪里清除
+固定定位
+position：fixed；参考对象是窗口
+top:10px;
+相对定位position:relative;
+1.不会改变元素的本身的特性
+2.以自身为参考对象
+3.相对定位不给方位值与普通元素相同
+4.给了方位值，那么原本的位置的空间会被文档流保留
+绝对定位
+position:absolute;
+特性
+1.会让元素脱离文档流
+2.可以设置参考对象
+3.给直系父级加定位属性(position:relative;)就能给绝对定位做参考对象
+4.参考对象必须具备positon属性，并且属性值不为static（没有定位）的元素
+5.脱离文档流
+6.会改变元素特性，让元素变成块级（这种块级不会独占一行，这种块级的宽度默认为0）
+7.行内元素支持宽高，块级元素内容撑开宽高
+8.没有祖先元素则相对于body
+9.一般配合相对定位使用*
+10.绝对定位的元素的位置相对于最近的已定位祖先元素
+11.margin：auto；失效
+
+层级：定位元素的层级，默认是后面的比前面的高
+值可以为正，也可以为负，值越大，越在上面，默认值=0 只能同级元素对比
+只对定位的元素有效，其它元素均无效
+只能同级元素对比，不能父子对比；
+z-index设置非static值的定位元素的层级
+display:inline-block;消除间隙：font-size：0；
+word-spacing:0；设置单词之间的间隙
+鼠标移动出现手：cursor:url('images/1.jpg'),pointer;(*)
+当鼠标按住颜色变化：.box ul li:active{backgroun-color:red;}(*)
+伪类：
+:link	选择没有被点击过的链接 只对a标签有效果
+:visited	选择已经被点击过的链接 只对a标签有效果
+:hover	选择鼠标悬浮在该元素上的样式 hover必须放在link与visited的后面
+:active		选择鼠标按下但是还没释放的元素
+这四个伪类一起写的话必须按照这个顺序
+display:none;
+backgroun-image:url(""); 背景图片
+backgroun-size:0px 0px； 背景图片的尺寸大小设置 宽度 高度 只写一个值的时候另一个值默认auto（按照图片的原始比例缩放）
+backgroun-size:contain;让背景图片按照自身的比例缩放，直到全部显示在盒子内部，但是如果比例与盒子宽高比例不符，会造成盒子有一部分空白。
+cover 让背景图片等比例缩放，直到全部铺满盒子，不会造成空白。但是如果比例与盒子宽高比例不符，会造成一部分背景图片显示不出来。
+backgroun-repeat:repeat;背景图片平铺repeat-x repeat-y no-repeat不平铺
+background-position:0 0；x y背景位置设置 x轴正值往右 负值往左 y轴正值往上 负值往下 只写一个值的时候，另一个值默认是50% 方位值：left right top bottom center顺序可以颠倒
+background-attachment:flxed;背景固定 让背景图片以body来定位 相当于把背景图片钉在body上 scroll随滚动条动
+文本样式：
+text-transform:uppercase;大写
+text-transform:lowercase;小写
+text-transform:capitalize;首字母大写
+文本对齐方式
+text-align:left;默认值
+text-align:center;
+line-height:;
+text-align:justify;两端对齐
+text-indent:10px;首行缩进
+text-indent:2em;首行空两字
+
+图片标签的四要素
+src alt 图片描述 width height<img src='' alt='' width='' height=''/>
+color:transparent;透明
+-webkit-background-clip:text;文本裁剪
+animation:move 10s infinite alternate;动画反向
+@keyframes move{
+	0%{background-position:0 -20px;}
+	100%{background-position:-200px -20px;}
+}
+
+position:fixed;固定定位
+background-position-y:-64px;
+date-src=""自定义属性
+块级元素
+1.默认占据一整行 宽度100% 父级的宽度
+2.会自动换行
+3.支持添加宽高
+4.支持margin
+5.支持padding
+6.可以嵌套任何内容
+常用块级元素 div p ulli olli table form
+行内元素
+1.不自动换行
+2.不支持宽高
+3.margin不支持上下 支持左右
+4.padding不支持上下 支持左右 上下只对自身有效果
+5.行内元素不能嵌套块级元素
+常用块级元素 a span b i strong em
+元素类型转换
+display:none;隐藏元素 在页面中不显示 也不占位置
+display:block;变成块级元素 让元素显示的意思
+display:inline;变成行内元素
+display:inline-block;行内块元素
+第十章
+img特性
+图片标签的四要素
+src alt 图片描述 width height<img src='' alt='' width='' height=''/>
+支持宽高  支持margin 横排显示	能设置text-align		能设置vertical-align	标签中间空格被解析	不支持margin：auto；
+vertical-align:定义行内元素的基线相对于该元素所在行的基线的垂直对齐的方式	只针对inline inline-block 图片标签，块级元素不适用
+top	元素的顶端与一行中最高元素的顶端对齐
+middle	此元素放置在父元素的中部
+bottom元素的底端与一行中最低的元素的底端对齐（以上的值与line-height有关）
+vertical-align:text-top;元素的顶端与父元素字体的顶端对齐
+text-bottom	元素的底端与父元素字体的底端对齐
+baseline 默认元素放在元素的基线上（以上值与font-size有关）
+vertical-align可以解决img下方间隙的问题；
+如果想让两个元素都垂直居中，需要给两个元素都写vertical-align：middle；
+鼠标样式：规定要鼠标进入元素内容区域要显示的光标的类型
+cursor：pointer；
+body没有高度就没用
+cursor:move;移动
+default	默认光标（通常是一个箭头）
+auto	默认 浏览器设置的光标
+pointer	光标呈现为指示链接的指针（一只手）
+move	此光标指示某对象可被移动
+text	光标指示文本
+wait	光标指示正忙（通常是一只表或沙漏）
+help	光标指示帮助（通常是一个问号或一个气球）
+cursor:url('pel.cur'),pointer;第一个值：url（）定义指针文件路径 此文件必须是cur后缀	第二个值：当第一个值出错的时的备用类型，第二个值必须写
+#透明度
+opacity：.5;取值0-1 父透子也透
+rgba（0,0,0,0）；父透 子不透
+filter：alpha（opacity=0-100）；0完全透明 100完全不透明	解决兼容性问题
+居中：vertical-align:middle；
+text-align：center；
+第九章 定位 用来改变元素在页面中的位置
+position:relative;
+相对定位的元素框会偏移某个距离。元素仍然保持其未定位前的形状，它原本所占的空间仍然保留。
+可以通过left、top、right、bottom或者px百分比规定位置。
+不脱离文档流 定位提升层级1
+如果父级没有高度top：50%；没用；
+特点：
+1.元素不脱离文档流
+2.不影响元素本身的特性
+3.如果没有定位偏移量，对元素本身没有任何影响；
+绝对定位：
+相对于已经定位的父元素进行位移
+如果没有定位偏移量，对元素本身没有任何影响
+父元素用相对定位 父相子绝
+特性：
+1.完全脱离文档流
+2.行内元素支持宽高
+3.块级元素默认内容撑开宽高
+4.如果父级没有定位，那么会往上找祖先元素
+5.如果都没有定位，那么最后body
+6.一般配合相对定位使用
+7.margin：auto；失效
+居中：
+position:absolute;
+left:50%;
+top:50%;
+margin-left:-100px;(盒子宽度的一半)
+margin-top:-100px;
+
+position：absolute；
+left：0；
+top：0；
+right：0；
+bottom：0；
+margin：auto；
+固定定位：
+fixed	相对于浏览器窗口	与绝对定位特性一致
+第四章：
+选择器
+
+
+背景样式：
+
+backgroun-image：url（‘’）；
+background-repeat:no-repeat；	背景图片的重复方式
+no-repeat不重复
+repeat-x水平重复
+repeat-y竖直重复
+背景定位：
+具体的值 px
+百分比 根据元素框
+关键词写法：top left right bottom center居中
+当你只写一个值时第二个值默认是center
+背景继承
+background-attachment：fixed；滚动条动或页面滚动背景图片不动
+backgroun：背景颜色 背景图片 背景重复 背景定位（左右 上下） 背景关联
+前端规范
+1.所有书写均在英文半角状态下的小写
+2.id，class必须以字母开头
+3.所有标签必须闭合
+4.html标签用tab键缩进
+5.属性值必须带引号
+6.<!--html注释-->
+/*css注释*/
+8.ul,li/ol,li/dl,dt,dd拥有父子级关系的标签
+9.p，dt，h标签 里面不能嵌套块属性标签
+10.a标签不能嵌套
+11.内联元素不能嵌套块（a除外但是不建议）
+第五章
+字体样式
+color:red;
+字体类型font-family:'宋体','' ;默认微软雅黑
+字体大小font-size:;
+加粗font-weight:100;100-900 bold粗体 lighter细体
+font-style:;italic倾斜 oblique斜体 normal默认
+小型大写字母：font-variant:small-caps;normal默认
+行高：行与行之间的距离	适用于一行文字垂直居中	多行文字居中用padding
+line-height:;px/百分比/em	百分比 和字体一样高 1.2没有写单位默认em
+字体的复合
+字体：字体粗细 倾斜 小型大写字母 字体大小/行高 字体风格
+font:bold italic 50px/1.2em '微软雅黑','宋体';
+color：；
+文本属性:
+text-transform:uppercase;全部大写
+text-transform:lowercase;全部小写
+text-transform:capitalize;首字母大写
+文本对齐方式
+text-align:left;
+text-align:right;
+text-align:center;
+text-align:justify;两端对齐
+text-indent:2em;首行缩进
+文本修饰
+text-decoration:underline;下划线
+none	去掉下划线
+line-through	中划线（del删除线）
+overline	上划线
+letter-spacing:100px;	字间距
+word-spacing:10px;	词间距
+white-space:nowrap;	文本不换行
+word-break:break-all;	单词内换行
+text-overflow:ellipsis;	文本省略号
+overflow:hidden;	元素溢出隐藏
+特殊符号:
+&nbsp;	空格
+&gt;	大于号
+&lt;	小于号
+&quot	引号
+&copy;	版权符号
+#p标签不能套块级元素
+第六章
+选择器:
+多元素组合选择器
+E,F	多元素选择器	同时匹配所有E元素或F元素，E和F用逗号分隔
+E>F	子元素选择器	匹配所有E元素的直接子元素F
+E+F	毗邻元素选择器	匹配所有E元素的子元素F	相邻元素选择器 选择同级相邻元素
+属性选择器
+[class]{}	匹配所有具有class属性的元素
+[class=“val”]	匹配所有class属性等于“val”的元素
+[class~=val]	匹配所有class属性包含“val”或者等于“val”的元素
+[class|=val]	匹配所有class属性等于“val”或者“val-”开头的元素
+[class1][class2=val]	匹配所有拥有class1属性同时具有class2等于“val”的元素
+伪类选择器
+伪类： 字面意思假的类 ：我们没有给某一个元素定义类名，可以通过样式的方式给某些选择器添加特殊的效果
+：link		规定所有未被点击的链接
+：visited	匹配所有已被点击的链接
+：hover		匹配鼠标悬停其上的元素
+：active		匹配鼠标已经其上按下而还没有释放的元素
+伪元素：通过样式的方式 在元素里面添加内容 默认是行内元素 可以添加任意样式
+before
+after
+三角形：border：50px solid transparent；
+border-top-color:red；
+border-bottom:none;
+第七章
+选择器优先级
+优先级排序：通配符<标签<class<id	优先级相同的选择器后写的样式会覆盖前面的
+后代选择器优先级多种情况
+id选择器个数不相等，id个数多的优先级高，后面不用比
+id选择器个数相等，则看class个数
+class个数相等，再看tagName（div元素选择器）个数
+#wrap ul li .list{}和.wrap ul li #list{}优先级一样
+选择器使用原则：准确的控制选中元素
+行内样式>内部样式=外部样式
+backgroun:red !importent;改变优先级
+常用css3样式
+1.圆角	border-radius:20px;
+四个值：左上 右上 右下 左下
+三个值：左上 右上左下 右下
+两个值：左上右下 右上左下
+一个值：所有角一样的值
+圆角单样式写法：
+左上角： border-top-left-radius:
+右上角： border-top-right-radius:
+右下角： border-bottom-right-radius:
+左下角： border-bottom-left-radius:
+border-radius:50%;圆形
+盒子阴影		box-shadow
+h-shadow水平偏移量	允许负值（必需）
+v-shadow垂直偏移量	允许负值（必需）
+blur模糊半径（可选）
+spread阴影的大小（可选）
+color阴影的颜色（可选）
+outset外部阴影（默认） 内部阴影（inset可选）
+box-shadow:10px 10px 10px 10px red,20px 20px 20px 20px blue;
+溢出隐藏		overflow:
+visible		默认值
+hidden		隐藏，并且其余内容是不可见的
+scroll		出现滚动条
+auto		根据内容情况来决定是否出现滚动条
+水平溢出隐藏	overflow-x:
+垂直溢出隐藏	overflow-y:
+第八章
+浮动（让块级元素横排显示）
+浮动的定义：使元素脱离文档流你，按照指定方向（左右）发生移动，遇到父级边界或者相邻的浮动元素停了下来。
+文档流：是文档中显示对象在排列时所占用的位置/空间（在页面中占位置）
+脱离文档流：在页面中不占位置
+浮动的特殊情况：
+1.当前面的盒子浮动，两个盒子大小一样，后面的盒子会被盖住
+2.浮动只影响他后面的元素
+3.任何元素都可以浮动
+4.父级宽度不够，浮动元素会被挤下来，之后还是会执行浮动样式
+5.如果浮动元素的高度不同，那么当它们向下移动时可能被其它浮动元素“卡住”
+浮动对文字的影响
+文字会环绕浮动元素，不会被盖住，可以理解成提升半层
+浮动和inline-block的区别
+相同点
+1.都支持横排显示
+2.都支持宽高
+3.不给宽高的时候，默认都是内容撑开宽高
+4.都支持margin具体值
+5.都不支持margin:auto;
+不同点：
+1.浮动脱离文档流		inline-block不脱离
+2.浮动提升半层
+3.inline-block中间解析一个空格
+清除浮动（**哪里浮动哪里清除）
+浮动导致父元素的塌陷，所以要清除浮动
+清除浮动		clear:left/right/both/none
+清除浮动 注意：浮动元素本身不能清除浮动
+子级办法：子级最后添加空标签	不适用所有情况 比如ulli
+父级办法：
+1.加高		问题：扩展性不好
+2.inline-block清除浮动方法		问题：margin：auto；失效 中间解析空格
+3.overflow：hidden；清除浮动方法		问题：要配合宽高
+4.after伪元素内部末尾添加内容		时下主流		content:'';display:block;clear:both;
+5.clearfix{zoom：1；}解决ie7兼容性
+6.clearfix:after{content:"";display:block;clear:both;}
+最大最小宽度 不要和宽度一起使用                                                                                                                                                                                                                                                            
+min-width:
+max-width:
+
+第十一章
+表单
+表单是一个包含表单元素的区域
+表单元素是允许用户在表单中（比如：文本域、下拉列表、单选框、复选框等等）输入信息的元素。
+<form></form>
+表单的属性 块级元素
+action		规定当提交表单时向何处发送表单数据(规定提交到后台的网址)
+method		规定用于发送form-data的HTTP方法（规定怎么提交到后台）：
+1.get方式：会直接在地址栏显示提交的表单数据 一般是用逗号 需要最佳的传输性能 立即传输一些数据
+2.post：会隐藏提交表单数据 分段传输 先解码 解码之后由服务器规定如何传输数据		对安全性要求高的时候用
+targel=""	规定action属性中提交的页面会在何处打开 -blank
+name		名字
+<form action="#" method="get" target=“blank”name="名字">
+<input type="text" name="text"></form>
+表单的控件
+<input>标签规定了用户可以在其中输入数据的输入字段。（单标签） 行内块元素
+类型由type属性来决定：
+text		文本框 文本输入框 用户名<input type="text" name="text" value="请输入用户名" placeholder="请输入用户名">
+password	密码框<input type="password" name="password" value="" placeholder="请输入密码">
+radio		单选按钮<input type="radio" name="sex" value="man" id="man">
+ 			<label for="man">男</label>	*<label>点击男文字选中单选框
+			<input type="radio" name="sex" value="women" for="women">女
+			<label for="women">女</label>
+checkbox	复选框  <input type="checkbox" name="" value="" id=""><label for="写作业">写作业</label>
+			<input type="checkbox">打篮球
+
+提交按钮<input type="submit" value="">
+重置按钮<input type="reset" value="">
+普通按钮<input type="button" value="点击我启动js"> 一般用来启动js脚本
+上传按钮<input type="file">
+隐藏文本域<input type="hidden" value="" name="">用来后台上传参数
+下拉选框<select size="3">size默认显示3行
+ <option selected="selected"></option>默认选中行
+ <option></option>
+</select>
+文本域<textarea rows="10" cols="20"></textarea>10行20列 免责申明
+样式textarea{resize:none;}规定不能拖动
+<fieldset><input><input> </fieldset>分组 <legend>标题</legend>
+<fieldset>可将表单内的相关元素分组
+<legend>标签为fieldset元素定义标题
+focus伪类
+<input type="">
+input:focus{background:red;}用户可以操作的元素 可以和用户交互的元素
+input{outline:none;}去掉自带轮廓线
+第十二章表格由<table>标签来定义 每个表格均有若干行（由<tr>标签定义） 每行被分割为若干单元格（由<td>标签定义）
+th	表头
+thead	表格头
+tbody	表格主体
+tfoot	表格尾
+<table border="1" width="800px" height="500px">
+	<thead>
+	<tr>
+		<th colspan="4">表头</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td rowspan="2"></td>
+	</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+		</tr>
+	<tfoot>
+</table>
+table{border:1px solid red;}
+表格之间不能嵌套任何元素<td>里面可以
+合并最终合并的是td单元格
+colspan属性规定单元格横跨的列数（横向合并）
+rowspan属性规定单元格横跨的行数（纵向合并）
+表格的特性
+1.单元格默认平分table的宽度
+2.当给了table宽度，没有给单元格具体的宽度，那么单元格的宽度会被转换成百分比
+3.表格的同一列会继承最大值
+4.th里面的内容，默认加粗并且上下左右居中
+5.td里面的内容，默认值上下居中 左对齐
+6.table的宽度决定了整个表格的宽度
+7.表格每一列必须有宽度
+8.td、th没有margin属性
+9.单元格里面可以放任何元素
+表格的样式：
+1.border-spacing:10px 10px;x轴 y轴 单元格之间的距离 相当于margin
+2.border-collapse:collapse;边框会合并为一个单一的边框会忽略border-spacing的值（合并单元格的边框线为一条，不能和border-spacing一起用）
+3.重置表格默认样式：
+table{border-collapse:collapse;}
+table th,table td{padding:0;}
+*display table让元素以表格形式排列
+display:table;
+display:table-cell;
+支持margin:auto;
+默认内容撑开宽度；
+支持宽高
+表格前后带有自动换行
+table-row-group 此元素会作为一个或多个行的分组来显示（类似<tbody>）
+table-header-group 此元素会作为一个或多个行的分组来显示（类似<thead>）
+table-footer-group 此元素会作为一个或多个行的分组来显示（类似<tfoot>）
+table-row 此元素会作为一个表格行显示（类似<tr>）
+table-column-group 此元素会作为一个或多个列的分组来显示（类似<colgroup>）
+table-column 此元素一个单元格列显示（类似<col>）
+table-cell 此元素会作为一个表格单元格显示（类似<td>和<th>）
+table-caption 此元素会作为一个表格标题显示（类似<caption>）
+第十三章：框架
+内联框架（内嵌框架），是在页面（body）里生成个内部框架（行内块元素）
+<iframe src="http://tmall.com" width="" height="" frameborder="" scrolling="" name="iframe"></iframe>
+width定义iframe的宽度
+height定义iframe的高度
+frameborder规定是否显示框架周围的边框
+src规定在框架中显示的文档URL
+scrolling规定是否在框架中显示滚动条
+name规定框架的名称
+框架集
+frameset元素可定义一个框架集，可包含多个子框架,每个框架都有独立的文档(不能写在body里面,不能和body共存)
+<frameset rows="20%,80%" noresize="noresize" frameborder="0">
+	<frame src="http://taobao.com"/>
+	<frameset cols="20%,30%,*">
+	<frame src="http://baidu.com">
+	</frameset>
+</frameset>
+rows：定义框架集中子框架行的数目和尺寸（横排展示）必写
+cols：定义框架集中子框架列的数目和尺寸（列展示）必写
+单位值：px % *余下的
+noresize="noresize"整体设置子框架是否可调整范围
+frameborder整体设置子框架的边框
+frameset框架可以包含frameset
+子框架
+src规定在框架中显示的文档的URL
+scrolling规定是否在框架中显示滚动条同iframe框架
+name规定框架的名称
+noresize=“noresize”
+marginheight定义框架的上方和下方的边距
+marginwidth定义框架的左侧和右侧的边距
+总结：
+页面中你想跳转的地方设置id名字 在a标签里面html后面 #id
+给frame设置name名字
+a标签规定要跳转的页面 target规定要跳转到哪里 就是跳转到命名的子框架
+第十四章 阿里图标和css高级
+css属性继承
+color
+font：small-caps
+text-align:center;
+text-indent:50px;
+letter-spacing:50px;
+word-spacing:30px;
+color:inherit;继承父级颜色
+网站logo
+<link rel="shortout icon" type="images/x-icon" href="icon/icon.ico">
+一个代码多次利用，可以通过定义特定class来实现
+@charset 'utf-8';
+第十六章
+（h5第一章：常用的html5标签）
+<header></header> 头部
+块级元素
+<nav></nav>导航
+页面中独立的内容 新闻 帖子<article></article>
+定义文档中的节，比如章节、页眉、页脚或文档中的其他部分。<section></section>
+<hgroup></hgroup>标题标签的组合
+<figure>
+<figcaption></figcaption>
+</figure>定义独立的流内容（图像、图表、照片、代码等等），可以对元素进行组合。组合标签 figure可以单独出现 figcaption出现figure必须出现
+<aside></aside>侧边栏
+<footer></footer>底部
+h5特殊结构标签：
+1.<mark></mark>重点显示 行内元素
+2.<ruby>槑<rt>mei<rp>mei</rp></rt></ruby> ruby注释 rp备胎 rt注释文字 不支持ruby是显示rp里的文字
+  <ruby>23333<rt>大笑</rt></ruby>
+3.<meter min="0" max="100" value="60" low="20" high="70">定义已知范围或分数值内的标量测量。也被称为gauge（尺度）。
+比如磁盘用量、查询结果的相关性，等等 min和max规定范围 value规定值 low和high规定最大最小值
+4.<progress max="" value="" min="0"></progress>标签显示任务的进度或者进程 一般结合js使用
+5.<details></details>用于描述文档或者文档某个部分的细节<details><summary>木马老师</summary><p>太帅了</p></details>(outline:none;)
+<wbr></wbr>定义文本在何处换行
+6.<dialog open></dialog>对话框
+ie低版本兼容
+1.添加自定义标签
+在head里面<script>document.createElement('header');</script> 再在header里面添加display:block;
+2.条件注释语句
+h5第二章
+属性选择器[class]{}匹配所有具有class属性的元素
+[class="box"]等于
+[class~="box"]
+[class|="box"]{}
+关联选择器span ~ p{}选择span后面所有的同级元素p标签
+属性选择器
+<img src="images/1.png" alt="">
+[src^='im']{boder:5px solid red;}匹配所有src属性 并且值以im开头的元素
+[src$="ng"]{}匹配所有src属性 并且以ng结尾的元素
+[src*="es"]{}匹配所有src属性 并且值包含es的元素
+新增伪类选择器
+li:first-of-type{}选择li li必须要是父级元素中的第一个
+li:last-of-type{}选择最后一个li
+p:only-of-type{}选择父元素中唯一的p元素
+p:only-child{}选择父元素中唯一的子元素
+p:nth-child(2){}选择父元素的第二个子元素 这个子元素要是p标签 *child这种选择器最好是在没有掺杂其他元素的情况下用 2n偶数 2n-1奇数 odd奇数 even偶数
+p:nth-last-child(3){}选择倒数第3个
+p:nth-of-type(){}选择第几个p标签 其它标签不影响 会自动跳过
+p:nth-last-of-type(){}选择倒数第几个p标签 其它元素不影响
+p:first-child{}选择第一个子元素 是p元素才能选中
+p:last-child{}选择最后一个子元素 是p元素才能选中
+p:empty{}选择没有内容的p标签 p标签必须是空标签
+p:target{}选择当前被锚点激活的标签 
+<div>
+<a href="#shuai">木马帅吗</a>
+<a href="#ku">木马酷吗</a>
+</div>
+<p id="shuai">太帅了</p>
+<p id="ku">太酷了</p>
+p:target{dispaly:block;}选择当前被锚点激活的p
+input选择器
+input:enabled{}选择可以被操作的input
+input:disabled{}选择不能被操作的input<input disabled="disabled">
+input:checked{}选择可以被选择的input
+<input type="checkbox">男
+<input type="radio">
+<p>hehehe</p>
+input:checked+p{}
+input::selection{}选择被用户选中的input
+span:not(.box){}选择除了.box之外的span标签
+<span></span>
+<span class=".box"></span>
+<span></span>
+新增字体样式
+@font-face{
+	font-family:'muma';  自定义字体名称
+	src:url('方正简体.ttf');  字体路径  多个路径用逗号隔开
+}
+div{
+	font-family:muma;
+}
+多行文本省略号
+display:-webkit-box; 弹性盒模型
+-webkit-box-orient:vertical;  垂直对齐的方式
+-webkit-line-clamp:5;  规定显示几行
+文本阴影
+text-shadow：5px 5px 5px black；
+h-shadow必需，水平阴影的位置，允许负值
+v-shadow必需，垂直阴影的位置，允许负值
+blur可选，模糊的距离
+color可选，阴影的颜色
+阴影叠加：先渲染前面的，再渲染后面的
+层叠：
+color：font-size:100px;font-weight:bold;
+text-shadow:2px 2px 0px white,4px 4px 0px red;
+光晕：
+color:white; font-size:100px;
+text-shadow:0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,0 0 40px #ff00de, 0 070px #fff,0 0 80px #ff00de, 
+0 0 100px #fff,0 0 50px #ff00de;
+火焰文字：
+text-shadow:0 0 20px #fefcc9,10px -10px 30px #feec85,-20px -20px 40px #ffae34,20px -40px 50px #ec760,-20px -60px 60px #cd4606,0 -80px 70px #973716,10px -90px 80px #451b0e;
+font-family:verrdana,geneva,snas-serif;
+
+h5第三章css3背景属性
+background-color	背景颜色
+background-image	背景图片
+background-repeat	背景图片的重复方式
+background-position	背景图片的位置
+background-attachment	背景关联
+background-clip:text;	*?
+background:url('images/1.png') no-repeat;
+background-size:50px 50px;auto 背景大小 px % auto
+cover保持宽高比不变 ,保证占满盒子，但是不一定能看到全部图
+contain；保持宽高比不变，保证看清全图，但是不一定占满盒子
+background-size:cover;
+多背景
+background-image:url('images/1.jpg'),url('images/1.png');
+background:url(''),url('') no-repeat 0 60px;
+多个背景用逗号隔开
+背景起始区域：
+background-origin:padding-nox;默认 从padding开始
+background-origin:content-box;从内容区域开始
+background-origin:border-box; 从边框区域开始
+背景裁剪：（背景显示区域）
+background-clip:border-box;默认 从边框开始
+background-clip:padding-box;
+background-clip:content-box;从padding开始其余裁剪掉了
+背景复合：
+background:url(''),url('') no-repeat 100px center/cover content-box padding-box;
+新增颜色HSL
+H:Hue(色调) 0（或360）表示红色，120表示绿色，240表示蓝色，也可取其它数值来指定颜色，取值为0-360
+S：Saturation(饱和度)取值为：0.0%-100.0%
+L:Lightness(亮度) 取值为：0.0%-100.0%
+A:Alpha(透明度) 取值为0-1
+background:hsl(360,100%,50%);
+渐变色：允许通过同样样式的方式 从一个颜色渐变到另外颜色 支持背景图片的样式
+线性渐变：
+background-image:linear-gradient(to top right,red,blue);
+background-image:linear-gradient(90deg,red 200px,blue);
+支持background-size:10px 10px;
+background-repeat:no-repeat;
+径向渐变
+background-image:-webkit-radial-gradient(center,red 60%,blue);
+解决ie低版本兼容：
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='1');
+倒影：不占文档流
+-webkit-box-reflect:above 10px linear-gradient(180deg,rgba(255,255,255,1),hsla(0,100%,50%,.5));
+above上 below 下 left左 right右
+offset：用长度值来定义倒影与对象之间的间隔，可以为负值 10px
+遮罩
+-webkit-mask-image:url('');
+-webkit-mask-repeat:no-repeat;
+-webkit-mask-position:center;
+-webkit-mask-size:cover;
+复合写法：
+-webkit-mask:url('') no-repeat center/cover;
+mask-box-image:遮罩图像
+linear-gradient：	使用线性渐变创建遮罩图像
+radial-gradient:	使用径向（放射性）渐变创建遮罩图像
+repeating-linear-gradient:	使用重复的线性渐变创建背遮罩像
+repeating-radial-gradient:	使用重复的径向（放射性）渐变创建遮罩图像
+
+
+
+
+
+h5第四章过渡和动画变换
+过渡：可以在不使用flash动画或javascript的情况下，当元素从一种样式变换为另一种样式时元素添加效果
+display:不支持过渡 
+优点：
+1.简单易用
+缺点：
+1.需要事件触发
+2.一次性的 每次都要重新触发
+3.只有开始和结束两个状态
+4.一条属性只能定义变化一次
+transition:1s cubic-bezier(n,n,n,n,);
+transition:width 1s .2s,background 1s;
+过渡属性：transition-property:
+none	没有过渡属性
+all	所有属性都过渡（默认值）
+过渡发费的时间transition-duration:
+单位：秒/毫秒
+过渡效果延迟时间：transition-delay:
+过渡速度曲线：transition-timing-function:
+linear	匀速
+ease	慢快慢
+ease-in	匀加速
+ease-out	匀减速
+ease-in-out	快慢快
+cubic-bezier(n,n,n,n,)	贝塞尔曲线
+
+
+动画：
+animation-name:keyframename 自定义的名字
+动画：
+1.动画的名称
+2.动画执行的时间
+3.动画延迟时间
+4.动画运动曲线
+5.动画执行次数 infinite 无数次
+6.动画执行方向 alternate 反向 normal默认
+7.动画执行状态 running运动 paused暂停
+8.动画执行效果是否可见（动画执行结束之后保持什么状态）初始值or结束值 forwards动画结束状态 backwars 在动画延迟时间所指定的一段时间内，开始状态 both向前和向后填充模式都被应用（不能与5,6一起使用）
+animation:move 1s 2s(延迟执行时间) linear 2(动画执行次数) alternate running;
+@keyframes move{
+	from{width:500px;}
+	to{width:800px;}
+}
+可以有多个值
+@keyframes move{
+	0%{width:500px;}
+	50%{width:600px;}
+	100%{width:900px;}
+}
+
+
+变换：允许对元素进行旋转、缩放、移动或倾斜
+rotate 旋转 deg角度 turn圈 rad弧度 grad梯度 （支持负值）
+transform:rotate(1turn);
+不脱离文档流，也不影响其他元素
+transform-origin:left top;旋转基点 默认中心点 需要注意放到元素本身样式里 不要hover
+scale 缩放 单位 倍数
+transform:scale(1.2);
+复合样式：
+transform:scale(0.5) rotate(60deg);
+位移：
+transform:translate(x,y);
+transform:translate(100px,100px);只写一个值只代表x轴位移
+transform:translateX(100px) translateY(100px);
+倾斜：
+transform:skew(X,Y);
+transform:skew(50deg,50deg);
+transform:skewX(50deg);
+
+允许调整盒子大小
+none:默认
+over-flow:hidden;必须配合写
+resize:horizontal；水平
+resize:vertical;竖直
+resize:both;
+
+怪异盒模型：
+box-sizing:border-box; 对应缩小盒子内容大小，以适应盒子的大小 注意加在子元素样式
+
+计算：
+可以使用+ - * / 四则运算
+中间要加空格
+width:calc(100% - 500px);
+width:-webkit-calc(100% - 300px);
+
+
+h5第五章
+弹性盒模型：伸缩容器
+任何容器都可以设置
+容器默认存在两根轴：水平的主轴和垂直的交叉轴。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；
+项目默认沿主轴排列，单个项目占据的主轴空间叫做main size ，占据的交叉轴空间叫做cross size。
+float clear vertical-align 失效
+display:flex;
+flex:1;规定伸缩项目（子级）占伸缩容器的一份 （*子级里面）
+伸缩容器的属性（父级）
+1.伸缩容器的方向flex-derection     就定义了它的主轴和交叉轴的方向  主轴不能溢出，交叉轴能。
+flex-derection:row; 默认 水平
+flex-derection:row-reverse;   反向水平
+flex-derection:column;  竖直
+flex-derection:column-reverse; 反向竖直
+
+规定换行：
+flex-wrap:nowrap;默认 不换行
+flex-wrap:wrap;换行
+flex-wrap:wrap-reveserse; 反向换行
+
+换行和伸缩方向的复合写法
+flex-flow:nowrap column;
+
+项目在主轴上的对齐方式
+justify-content:flex-start;  主轴的起点对齐
+justify-content:flex-end;  主轴的终点对齐
+justify-content:center;中间对齐
+justify-content:space-between; 两端对齐
+justify-content:space-around; 两侧距离相等 有点像加了margin
+
+交叉轴对齐方式
+align-items:stretch;默认 父级没有高度的时候默认占满
+align-items:flex-start;
+align-items:flex-end;
+align-items:center;
+align-items:baseline; 和第一行文字的基线对齐
+
+多行的时候交叉轴对齐方式
+align-content:stretch;默认
+align-content:flex-start;
+align-content:flex-end;
+align-content:center;
+align-content:space-between;
+align-content:space-around;
+
+
+给子级：
+order:1;  定义子元素（项目）的排列顺序 值：数字  默认是0  值可以为正也可以为负  数值越小越靠前 
+
+规定拉伸项目占伸缩容器盒子放大的比例 默认为0 必须有剩余空间 不能为负值 整数
+flex-grow:1;
+
+flex-shrink属性定义了项目的缩小比例，（默认为1），即如果空间不足，该项目将缩小。 数值越大缩小越多
+如果一个项目的flex-shrink属性为0，其它项目都为1，剩余空间不足，前者不缩小，负值对该属性无效。
+flex-shrink:1；
+
+flex-basis 设置项目的初始宽度 优先级大于宽度
+flex-basis:100px;
+
+复合属性
+flex:1;(flex-grow:0; flex-shrink:1; flex-basis:auto;)       平分盒子 每个盒子占等分之一
+flex:auto;（flex-grow:1; flex-shrink:1; flex-basis:auto;）   平分内容之后剩下的空间几个盒子平分
+flex:none;  （flex-grow:0; flex-shrink:0; flex-basis:auto;）    内容的宽度
+
+align-self 单个项目与其他项目不一样的对齐方式
+align-self:flex-start;
+align-self:flex-end;
+align-self:center;
+align-self:auto;项目占满盒子的高度
+align-self:baseline;基线对齐
+align-self:stretch;默认
+
+
+
+h5第六章
+响应式布局
+媒体查询
+媒体类型
+all 所有媒体
+screen 彩屏设备
+print 用于打印机和打印预览
+@media all{
+	div{
+		background:blue;
+	}
+}
+在所有彩屏下并且 最大宽度是600px
+(width:600px)	(min-width:600px)
+（orientation:portrait）竖屏
+(orientation:landscape) 横屏
+屏幕宽度 小于600px 变成两行显示
+@media screen and（not相反） (max-width:600px){
+	div{
+		width:50%;
+	}
+}
+
+@media screen and (min-width:801px) and (max-width:1000px){
+	li{width:33.3%;}
+}
+可以引入外部样式：
+<link rel="stylesheet" media="screen and (max-width:800px)" href="css/media.css" type="text/css">
+在所有样式全部加载完了再加载
+@import url("css/media.css") screen and (max-width:800px);
+
+响应式布局的优缺点
+优点：面对不同分辨率设备，灵活性强，能够快捷的解决设备显示适应问题。
+缺点：兼容各种设备时所需工作量大、效率低下、代码累赘，会隐藏无用的元素，加载时间延长，其实这是一种折中性质的设计解决方案，由于多方面元素影响而达不到最佳效果，在一定程度上改变了网站原有的布局结构，会出现用户混淆的情况。
+
+移动端适配：
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+
+font-size:1rem; rem相对单位
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
