@@ -1,0 +1,35 @@
+@charset 'utf-8';
+div{
+    margin:100px auto;
+    width:50%;
+    text-align:center;
+}
+h1{
+    font-size:45px;
+}
+div p{
+    margin:30px auto;
+    padding:3px;
+    width:200px;
+}
+button{
+    margin-top:50px;
+    width:200px;
+    font-size:32px;
+    font-weight:bold;
+    border-radius: 10px;
+    line-height:50px;
+    border:1px solid white;
+}
+button:focus{
+    outline:0;
+}
+button:active{
+    background-color:blue;
+}
+button:hover + h1{
+    color:blue;
+} 
+ button:active + p{
+    background-color:blue;
+}
