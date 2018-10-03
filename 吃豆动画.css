@@ -1,0 +1,68 @@
+*{margin:0; padding:0;}
+body{background-color:black;}
+.box{
+    position:relative;
+    width:200px;
+    height:200px;
+    background-color:black;
+    margin:100px 150px;
+    border-radius:100%;
+    box-shadow:300px 0 0 -80px white,
+    450px 0 0 -80px white,
+    600px 0 0 -80px white,
+    750px 0 0 -80px white,
+    900px 0 0 -80px white,
+    1050px 0 0 -80px white;
+    animation:go1 1s infinite linear;
+}
+
+.box .top{
+    width:200px;
+    height:100px;
+    background-color:yellow;
+    margin-left:100px;
+    border-radius:95px 95px 0 0;
+    animation:go 1s infinite linear;
+}
+.box .bottom{
+    width:200px;
+    height:100px;
+    margin-left:100px;
+    background-color:yellow;
+    border-radius:0 0 95px 95px;
+    animation:end 1s infinite linear;
+}
+.box .eye{
+    position:absolute;
+    top:30px;
+    left:180px;
+    width:30px;
+    height:30px;
+    background-color:black;
+    border-radius:50%;
+}
+
+@keyframes go{
+    form{transform:rotate(0)}
+    to{transform:rotate(-30deg)}
+}
+@keyframes end{
+    form{transform:rotate(0)}
+    to{transform:rotate(30deg)}
+}
+@keyframes go1{
+    form{ box-shadow:300px 0 0 -80px white,
+        450px 0 0 -80px white,
+        600px 0 0 -80px white,
+        750px 0 0 -80px white,
+        900px 0 0 -80px white,
+        1050px 0 0 -80px white;}
+    to{ box-shadow:150px 0 0 -80px white,
+        300px 0 0 -80px white,
+        450px 0 0 -80px white,
+        600px 0 0 -80px white,
+        750px 0 0 -80px white,
+        900px 0 0 -80px white;}
+}
+ 
+
