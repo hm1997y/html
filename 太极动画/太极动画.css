@@ -1,0 +1,52 @@
+html{
+    height:100%;
+}
+body{
+    display:flex;
+    height:100%;
+    margin:0;
+    background:gray;
+}
+.box{
+    width:0;
+    height:300px;
+    border-left:150px solid black;
+    border-right:150px solid white;
+    margin:auto;
+    border-radius:50%;
+}
+.box::before{
+    display:block;
+    content:'';
+    width:50px;
+    height:50px;
+    border:50px solid black;
+    margin-left:-70px;
+    border-radius:50%;
+    background-color:white;
+    transform-origin:100% 0;
+    animation:go 1s infinite linear alternate;
+    animation-delay:-1s;
+}
+.box::after{
+    display:block;
+    content:'';
+    width:50px;
+    height:50px;
+    border:50px solid white;
+    border-radius:50%;
+    background-color:black;
+    margin-left:-83px;
+    transform-origin:0 100%;
+    animation:end 1s infinite linear alternate;
+}
+@keyframes go{
+    form{transform:scale(0)}
+    to{transform:scale(1.2)}
+}
+
+@keyframes end{
+    form{transform:scale(0)}
+    to{transform:scale(1.2)}
+}
+
