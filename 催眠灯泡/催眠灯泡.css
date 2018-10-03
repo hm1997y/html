@@ -1,0 +1,58 @@
+*{margin:0;}
+body{
+    background-color:#2b142f;
+}
+.box{
+    margin:auto;
+    width:80px;
+    height:320px;
+    transform-origin:top;
+    animation:go 2s infinite linear;
+}
+.box:hover{
+    animation-play-state: paused;
+}
+.box .line{
+    margin:auto;
+    width:4px;
+    height:221px;
+    background-color:#000;
+}
+.box .san{
+    width:0;
+    margin:-5px auto;
+    border-left:15px solid transparent;
+    border-right:15px solid transparent;
+    border-bottom:20px solid #000;
+}
+.box .role{
+    width:60px;
+    height:60px;
+    margin:auto;
+    border-radius:50%;
+    box-shadow: 0 0 10px 0 white inset;
+}
+.box .role:before{
+    content:'';
+    display:block;
+    margin:auto;
+    width:20px;
+    height:20px;
+    border-radius:11px;
+    box-shadow:0 0 10px 0 white inset;
+}
+@keyframes go{
+    0%{
+       transform: rotate(-30deg);
+    }
+    50%{
+        transform:rotate(30deg);
+    }
+    100%{
+        transform:rotate(-30deg);
+    }
+}
+.box .role:hover{
+    background-color:white;
+    box-shadow:0 0 200px 0 white;
+}
