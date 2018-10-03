@@ -1,0 +1,33 @@
+*{margin:0; padding:0;}
+.box{
+    width:1000px;
+    height:300px;
+    background-color:gray;
+    margin:100px auto;
+}
+
+.box ul li{
+    display:inline-block;
+    width:60px;
+    background-color:black;
+    list-style:none;
+    color:white;
+    line-height:60px;
+    text-align:center;
+    margin:16px;
+    border-radius:15px 15px 15px 15px;
+    transition:1s;
+}
+.box ul li:nth-child(11){
+    margin-left:70px;
+}
+.box ul li:nth-child(20){
+    margin-left:125px;
+}
+.box ul li:hover {
+    transform:rotate(45deg) scale(1.3);
+    cursor: pointer;
+}
+.box ul li:active{
+    background-color:red;
+}
